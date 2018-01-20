@@ -53,7 +53,7 @@ class Initial extends PureComponent {
               />
               <CardText>
                 <List>
-                  <Subheader>Here are some tips</Subheader>
+                  <Subheader>Here arspoe some tips</Subheader>
                   {this.renderTips()}
                 </List>
                 <FooterMessage>May the code be with you</FooterMessage>

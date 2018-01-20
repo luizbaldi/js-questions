@@ -4,12 +4,13 @@ import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { injectGlobal } from 'styled-components';
+import bg from './img/stardust.png';
 
 /* Global style */
 injectGlobal([`
   body {
     font-family: 'Roboto', sans-serif;
-    background-color: #505050;
+    background: url(${bg});
     margin: 0;
   }
 `]);
