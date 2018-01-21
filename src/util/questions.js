@@ -1,6 +1,9 @@
 export default {
   test: {
-    intro: "First questions",
+    intro: `
+      Basic first question,
+      Hit ctrl+enter to submit/continue (remember that)
+    `,
     code: `
       function() {
         // Return true and press ctrl+enter to test

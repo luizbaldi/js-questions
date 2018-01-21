@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { injectGlobal } from 'styled-components';
 import bg from './img/stardust.png';
+import App from './screens/App.jsx';
+import store from './config/store';
 
 /* Global style */
 injectGlobal([`
@@ -17,9 +17,7 @@ injectGlobal([`
 
 /* Render App */
 ReactDOM.render(
-  <MuiThemeProvider>
-    <Routes />
-  </MuiThemeProvider>, 
+  <App store={store} />, 
   document.getElementById('root')
 );
 

@@ -5,8 +5,8 @@ import {
 } from 'react-router-dom';
 
 /* Screens */
-import InitialScreen from './screens/Initial.jsx';
-import QuestionsScreen from './screens/Questions.jsx';
+import InitialScreen from '../screens/Initial.jsx';
+import QuestionsScreen from '../screens/Questions.jsx';
 
 const Routes = () => (
   <Router>
