@@ -5,6 +5,6 @@ class Store {
   @observable questions = questions
 }
 
-const storeInstance = new Store
+const storeInstance = new Store()
 
 export default storeInstance

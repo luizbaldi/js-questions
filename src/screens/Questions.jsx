@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 
@@ -7,7 +7,7 @@ import Editor from '../components/Editor.jsx';
 import ResultBox from '../components/ResultBox.jsx';
 
 @observer
-class Questions extends PureComponent {
+class Questions extends Component {
   render() {
     return (
       <div>
