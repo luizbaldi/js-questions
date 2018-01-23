@@ -8,8 +8,7 @@ export default {
       function() {
         // Return true and press ctrl+enter to test
         
-      }
-    `,
+      }`,
     tests: [
       {
         param: 'Params goes here',

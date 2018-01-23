@@ -4,7 +4,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { injectGlobal } from 'styled-components';
 import bg from './img/stardust.png';
 import App from './screens/App.jsx';
-import store from './config/store';
+import { useStrict } from 'mobx';
 
 /* Global style */
 injectGlobal([`
@@ -15,9 +15,12 @@ injectGlobal([`
   }
 `]);
 
+/* Set mobx strict mode */
+useStrict(true);
+
 /* Render App */
 ReactDOM.render(
-  <App store={store} />, 
+  <App />, 
   document.getElementById('root')
 );
 
