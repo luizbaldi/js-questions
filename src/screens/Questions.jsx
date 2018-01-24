@@ -12,57 +12,68 @@ class Questions extends Component {
     super(props)
 
     /* Binds code submition listener */
-    document.addEventListener('keydown', this.handleCodeSubmit.bind(this));
+    document.addEventListener('keydown', this.handleCodeSubmit.bind(this))
 
-    this.onCodeChange = this.onCodeChange.bind(this);
-    this.runTests = this.runTests.bind(this);
+    this.onCodeChange = this.onCodeChange.bind(this)
+    this.runTests = this.runTests.bind(this)
+    this.setResult = this.setResult.bind(this)
+    this.finish = this.finish.bind(this)
   }
   onCodeChange(newValue) {
-    this.props.questionsStore.updateCurrentQuestionCode(newValue);
+    this.props.questionsStore.updateCurrentQuestionCode(newValue)
+  }
+  setResult(result) {
+    this.props.questionsStore.setResult(result)
   }
   handleCodeSubmit(e) {
     if (e.keyCode === 13 && e.altKey) {
-      const { setResult, currentQuestion } = this.props.questionsStore;
-      let { code } = currentQuestion;
+      let { code } = this.props.questionsStore.currentQuestion
       code = code
         .trim()
         .split('\n')
         .filter(line => {
-          line = line.trim();
-          return !(line.startsWith('//') || line.startsWith('/*'));
+          line = line.trim()
+          return !(line.startsWith('//') || line.startsWith('/*'))
         })
-        .join('');
+        .join('')
 
-      let currentFunc = null;
-      code = `currentFunc = ${code}`;
+      let currentFunc = null
+      code = `currentFunc = ${code}`
       try {
-        eval(code);
-        let isValid = this.runTests(currentFunc);
+        eval(code)
+        let isValid = this.runTests(currentFunc)
         if (isValid) {
-          setResult('Pass to the next level');
+          this.props.questionsStore.nextLevel()
         } else {
-          setResult('Tests are not passing');
+          this.setResult('Tests are not passing. Check your code.')
         }
       } catch (err) {
-        setResult('Check your code.', err.message);
+        this.setResult(`Ops, something went wrong. Error: ${err.message}`)
       }
-      
     }
   }
   runTests(currentFunc) {
-    return this.props.questionsStore.currentQuestion.tests.every(test => currentFunc(test.param) === test.result);
+    return this.props.questionsStore.currentQuestion.tests.every(test => currentFunc(test.param) === test.result)
+  }
+  finish() {
+    this.setResult('Finishing game...');
   }
   render() {
     const { currentQuestion, result } = this.props.questionsStore
     return (
       <div>
-        <Editor 
-          code={currentQuestion.code}
-          onChange={this.onCodeChange}
-        />
-        <ResultBox 
-          value={result}
-        />
+        { result !== 'finished' ?
+          <div>
+            <Editor 
+              code={currentQuestion.code}
+              onChange={this.onCodeChange}
+            />
+            <ResultBox 
+              value={result}
+            />
+          </div>
+          : this.finish()
+        }
       </div>
     )
   }

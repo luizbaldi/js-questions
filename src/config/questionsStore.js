@@ -11,16 +11,28 @@ class QuestionsStore {
   }
 
   loadInitialQuestion() {
-    this.currentQuestion = this.questions[Object.keys(this.questions)[0]]
+    const initialQuestion = this.questions[0]
+    this.currentQuestion = initialQuestion
     this.result = this.currentQuestion.intro
   }
 
   @action setResult(result) {
-    this.result = result;
+    this.result = result
   }
   
   @action updateCurrentQuestionCode(code) {
-    this.currentQuestion.code = code;
+    this.currentQuestion.code = code
+  }
+
+  @action nextLevel() {
+    const nextQuestionIdx = this.questions.findIndex(question => question.name === this.currentQuestion.name) + 1
+
+    if (nextQuestionIdx < this.questions.length) {
+      this.currentQuestion = this.questions[nextQuestionIdx]
+      this.result = this.currentQuestion.intro
+    } else {
+      this.result = 'finished';
+    }
   }
 
 }
