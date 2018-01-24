@@ -29,7 +29,7 @@ class Initial extends PureComponent {
         secondaryText: 'Don\'t worry about it, just saying to remember'
       },
       {
-        primaryText: 'Hit Ctrl+Enter to proceed a level or submit',
+        primaryText: 'Hit Alt+Enter to proceed a level or submit',
         secondaryText: 'This is very important tho'
       }
     ]

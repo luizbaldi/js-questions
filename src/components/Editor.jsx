@@ -7,13 +7,14 @@ import AceEditor from 'react-ace'
 import 'brace/mode/javascript'
 import 'brace/theme/twilight'
 
-const Editor = ({ code }) => (
+const Editor = ({ code, onChange }) => (
   <StyledEditor
     mode="javascript"
     theme="twilight"
     name="editor"
     fontSize={16}
     value={code}
+    onChange={onChange}
     setOptions={{
       showLineNumbers: true,
       tabSize: 2,

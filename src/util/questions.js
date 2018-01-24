@@ -1,19 +1,20 @@
 export default {
-  test: {
+  square: {
     intro: `
-      Basic first question,
-      Hit ctrl+enter to submit/continue (remember that)
+      We'll start off with something easy.,
+      Hit alt+enter to submit/continue (remember that)
     `,
     code: `
-      function() {
-        // Return true and press ctrl+enter to test
-        
+      function square(x) {
+          // Return x squared
+          
       }`,
     tests: [
-      {
-        param: 'Params goes here',
-        result: true
-      }
+      { param: 2, result: 4 },
+      { param: 4, result: 16 },
+      { param: 1.5, result: 2.25 },
+      { param: -12, result: 144 },
+      { param: -1.5, result: 2.25 }
     ]
   }
 }
