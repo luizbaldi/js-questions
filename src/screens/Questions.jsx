@@ -19,6 +19,9 @@ class Questions extends Component {
     this.setResult = this.setResult.bind(this)
     this.finish = this.finish.bind(this)
   }
+  componentDidMount() {
+    this.props.questionsStore.startTimer()
+  }
   onCodeChange(newValue) {
     this.props.questionsStore.updateCurrentQuestionCode(newValue)
   }
@@ -43,7 +46,7 @@ class Questions extends Component {
         eval(code)
         let isValid = this.runTests(currentFunc)
         if (isValid) {
-          this.props.questionsStore.nextLevel()
+          this.props.questionsStore.nextLevel(currentFunc)
         } else {
           this.setResult('Tests are not passing. Check your code.')
         }
@@ -56,7 +59,7 @@ class Questions extends Component {
     return this.props.questionsStore.currentQuestion.tests.every(test => currentFunc(test.param) === test.result)
   }
   finish() {
-    this.setResult('Finishing game...');
+    this.props.history.push('finish');
   }
   render() {
     const { currentQuestion, result } = this.props.questionsStore
