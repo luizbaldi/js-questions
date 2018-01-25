@@ -9,7 +9,6 @@ class QuestionsStore {
   @observable timerData
   
   constructor() {
-    console.log('constructing questions store')
     this.questions = questions
     this.finalQuestions = ''
     this.currentQuestion = this.questions[0]

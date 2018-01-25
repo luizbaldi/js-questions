@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
 /* UI Components */
+import VerticalAlign from '../components/VerticalAlign';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
@@ -43,59 +44,32 @@ class Initial extends PureComponent {
   }
   render() {
     return (
-      <VerticalContainer>
-        <VerticalContent>
-          <Container>
-            <Card>
-              <CardTitle
-                title='JS Questions'
-                subtitle={`Welcome to an adapted version of "You Can' t Javascript Under Pressure" :)`}
-              />
-              <CardText>
-                <List>
-                  <Subheader>Here arspoe some tips</Subheader>
-                  {this.renderTips()}
-                </List>
-                <FooterMessage>May the code be with you</FooterMessage>
-              </CardText>
-              <Divider />
-              <CardActions>
-                <FlatButton
-                  label="Start coding!"
-                  onClick={() => this.changePage('questions')}
-                  fullWidth
-                />
-              </CardActions>
-            </Card>
-          </Container>
-        </VerticalContent>
-      </VerticalContainer>
+      <VerticalAlign>
+        <Card>
+          <CardTitle
+            title='JS Questions'
+            subtitle={`Welcome to an adapted version of "You Can' t Javascript Under Pressure" :)`}
+          />
+          <CardText>
+            <List>
+              <Subheader>Here arspoe some tips</Subheader>
+              {this.renderTips()}
+            </List>
+            <FooterMessage>May the code be with you</FooterMessage>
+          </CardText>
+          <Divider />
+          <CardActions>
+            <FlatButton
+              label="Start coding!"
+              onClick={() => this.changePage('questions')}
+              fullWidth
+            />
+          </CardActions>
+        </Card>
+      </VerticalAlign>
     )
   }
 }
-
-const VerticalContainer = styled.div`
-  top: 0;
-  left: 0;
-  text-align: center;
-  height: 100vh;
-  width: 100%;
-  display: table;
-  position: absolute;
-`
-
-const VerticalContent = styled.div`
-  min-width: 350px;
-  padding: 12px;
-  vertical-align: middle;
-  display: table-cell;
-`
-
-const Container = styled.div`
-  margin: auto;
-  max-width: 80%;
-  text-align: center;
-`
 
 const FooterMessage = styled.i`
   margin: 10px 0;
