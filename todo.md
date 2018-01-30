@@ -2,7 +2,7 @@
 [x] Create hoc for vertical content
 
 - Questions screen
-[ ] Add side-menu to personalize ace editor
+[x] Add side-menu to personalize ace editor
 [ ] Show test logs on result box
   [ ] Animate result box height when running tests
 
