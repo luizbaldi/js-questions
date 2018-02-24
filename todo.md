@@ -3,7 +3,7 @@
 
 - Questions screen
 [x] Add side-menu to personalize ace editor
-[ ] Show test logs on result box
+[x] Show test logs on result box
   [ ] Animate result box height when running tests
 
 - Finish screen

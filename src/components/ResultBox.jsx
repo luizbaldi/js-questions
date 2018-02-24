@@ -2,14 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const ResultBox = ({ value }) => (
+const ResultBox = ({ children }) => (
   <Result>
-    <span>{value}</span>
+    {children}
   </Result>
 )
 
 ResultBox.propTypes = {
-  value: PropTypes.string.isRequired
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ])
 }
 
 const Result = styled.div`

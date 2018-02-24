@@ -23,7 +23,7 @@ export default [
   {
     name: 'square',
     intro: `
-      We'll start off with something easy.,
+      We'll start off with something easy.
       Hit alt+enter to submit/continue (remember that)
     `,
     code: `

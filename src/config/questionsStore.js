@@ -4,6 +4,7 @@ import questions from '../util/questions'
 class QuestionsStore {
   questions = questions
   finalQuestions
+
   @observable currentQuestion = {}
   @observable result
   @observable timerData
