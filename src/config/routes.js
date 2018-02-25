@@ -1,30 +1,30 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Route
-} from 'react-router-dom';
-import { Provider } from 'mobx-react';
+} from 'react-router-dom'
+import { Provider } from 'mobx-react'
 
 /* Screens */
-import InitialScreen from '../screens/Initial.jsx';
-import QuestionsScreen from '../screens/Questions.jsx';
-import FinishScreen from '../screens/Finish.jsx';
+import InitialScreen from '../screens/Initial.jsx'
+import QuestionsScreen from '../screens/Questions.jsx'
+import FinishScreen from '../screens/Finish.jsx'
 
 /* Stores */
-import questionsStore from '../config/questionsStore';
+import questionsStore from '../config/questionsStore'
 
-const stores = { questionsStore };
+const stores = { questionsStore }
 
 const Routes = () => (
   <Provider {...stores}>
     <Router>
-      <div> 
+      <div>
         <Route exact path='/' component={InitialScreen} />
         <Route path='/questions' component={QuestionsScreen} />
         <Route path='/finish' component={FinishScreen} />
       </div>
     </Router>
   </Provider>
-);
+)
 
-export default Routes;
+export default Routes

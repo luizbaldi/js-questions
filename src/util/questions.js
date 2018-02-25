@@ -1,5 +1,5 @@
-/* 
- * Model object 
+/*
+ * Model object
  * const model = {
  *   intro: 'String -> Question intro message',
  *   code: 'String -> Initial code on Ace editor',
@@ -48,8 +48,8 @@ export default [
         
       }`,
     tests: [
-      { param: "funkey monkey", result: "FUNKEY MONKEY" },
-      { param: "PotatoE", result: "pOTATOe" }
+      { param: 'funkey monkey', result: 'FUNKEY MONKEY' },
+      { param: 'PotatoE', result: 'pOTATOe' }
     ]
   }
 ]

@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
 /* UI Components */
-import VerticalAlign from '../components/VerticalAlign';
+import VerticalAlign from '../components/VerticalAlign'
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
@@ -12,10 +12,10 @@ import Divider from 'material-ui/Divider'
 import FlatButton from 'material-ui/FlatButton'
 
 class Initial extends PureComponent {
-  changePage(page) {
+  changePage (page) {
     this.props.history.push(`/${page}`)
   }
-  renderTips() {
+  renderTips () {
     const items = [
       {
         primaryText: 'You can check internet for syntax doubts',
@@ -42,7 +42,7 @@ class Initial extends PureComponent {
       />
     ))
   }
-  render() {
+  render () {
     return (
       <VerticalAlign>
         <Card>
@@ -60,7 +60,7 @@ class Initial extends PureComponent {
           <Divider />
           <CardActions>
             <FlatButton
-              label="Start coding!"
+              label='Start coding!'
               onClick={() => this.changePage('questions')}
               fullWidth
             />
