@@ -12,7 +12,7 @@ ResultBox.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element
-  ])
+  ]).isRequired
 }
 
 const Result = styled.div`

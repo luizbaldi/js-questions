@@ -1,15 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import propTypes from 'prop-types'
 
-const VerticalAlign = (props) => (
+const VerticalAlign = ({ children }) => (
   <VerticalContainer>
     <VerticalContent>
       <Container>
-        { props.children }
+        { children }
       </Container>
     </VerticalContent>
   </VerticalContainer>
 )
+
+VerticalAlign.propTypes = {
+  children: propTypes.element.isRequired
+}
 
 const VerticalContainer = styled.div`
   top: 0;

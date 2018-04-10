@@ -38,34 +38,34 @@ class Editor extends PureComponent {
     this.toggleMenu = this.toggleMenu.bind(this)
   }
 
-  toggleMenu() {
-    const isMenuOpen = !this.state.isMenuOpen
-    this.setState({ isMenuOpen })
-  }
-
   onCheckboxClick(name, checked) {
     const config = Object.assign({}, this.state.config)
     config[name] = checked
     this.setState({ config })
   }
 
+  toggleMenu() {
+    const isMenuOpen = !this.state.isMenuOpen
+    this.setState({ isMenuOpen })
+  }
+
   renderCheckboxItems() {
     const options = [
       {
-        label: "Show line numbers",
-        name: "showLineNumbers"
+        label: 'Show line numbers',
+        name: 'showLineNumbers'
       },
       {
-        label: "Show print margin",
-        name: "showPrintMargin"
+        label: 'Show print margin',
+        name: 'showPrintMargin'
       },
       {
-        label: "Show gutter",
-        name: "showGutter"
+        label: 'Show gutter',
+        name: 'showGutter'
       },
       {
-        label: "Highlight active line",
-        name: "highlightActiveLine"
+        label: 'Highlight active line',
+        name: 'highlightActiveLine'
       }
     ];
     
@@ -103,7 +103,7 @@ class Editor extends PureComponent {
           showGutter={showGutter}
           highlightActiveLine={highlightActiveLine}
         />
-        <Drawer 
+        <Drawer
           open={this.state.isMenuOpen}
           onRequestChange={this.toggleMenu}
           docked={false}
