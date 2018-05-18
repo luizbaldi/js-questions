@@ -2,14 +2,15 @@ import { observable, action } from 'mobx'
 import questions from '../util/questions'
 
 class QuestionsStore {
+
   questions = questions
   finalQuestions
 
   @observable currentQuestion = {}
   @observable result
   @observable timerData
-  
-  constructor() {
+
+  constructor () {
     this.questions = questions
     this.finalQuestions = ''
     this.currentQuestion = this.questions[0]
@@ -20,21 +21,22 @@ class QuestionsStore {
     }
   }
 
-  @action setResult(result) {
+  @action setResult (result) {
     this.result = result
   }
-  
-  @action updateCurrentQuestionCode(code) {
+
+  @action updateCurrentQuestionCode (code) {
     this.currentQuestion.code = code
   }
 
-  @action startTimer() {
+  @action startTimer () {
     this.timerData.start = new Date()
   }
 
-  @action nextLevel(question) {
-    const nextQuestionIdx = this.questions.findIndex(question => question.name === this.currentQuestion.name) + 1
-    
+  @action nextLevel (question) {
+    /* eslint max-len: 0 */
+    const nextQuestionIdx = this.questions.findIndex((currQuestion) => currQuestion.name === this.currentQuestion.name) + 1
+
     /* Saves current subition with an separator */
     this.finalQuestions += `${question.toString()}//`
 

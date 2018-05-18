@@ -4,26 +4,28 @@ import React, { PureComponent } from 'react';
 import { inject } from 'mobx-react'
 
 /* UI Components */
-import VerticalAlign from '../components/VerticalAlign';
 import { Card, CardTitle, CardText } from 'material-ui/Card'
+import VerticalAlign from '../components/VerticalAlign';
 
 @inject('questionsStore')
 class Finish extends PureComponent {
-  constructor(props) {
+
+  constructor (props) {
     super(props);
 
     this.state = {
       finalTime: ''
     }
   }
-  componentWillMount() {
+  componentWillMount () {
     const { timerData } = this.props.questionsStore
     const finalTime = timerData.end - timerData.start
     const seconds = Math.floor(finalTime / 1000)
     const minutes = Math.floor(seconds / 60)
     this.setState({ finalTime: `${minutes}: ${seconds}` })
   }
-  render() {
+
+  render () {
     return (
       <VerticalAlign>
         <Card>
@@ -32,12 +34,13 @@ class Finish extends PureComponent {
             subtitle='You finished the test!'
           />
           <CardText>
-            Time elapsed: {this.state.finalTime} 
+            Time elapsed: {this.state.finalTime}
           </CardText>
         </Card>
       </VerticalAlign>
     )
-  } 
+  }
+
 }
 
 export default Finish

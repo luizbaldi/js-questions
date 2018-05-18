@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
+import shortid from 'shortid'
 
 /* UI Components */
 import Editor from '../components/Editor.jsx'
@@ -8,7 +9,8 @@ import ResultBox from '../components/ResultBox.jsx'
 @inject('questionsStore')
 @observer
 class Questions extends Component {
-  constructor(props) {
+
+  constructor (props) {
     super(props)
 
     /* Binds code submission listener */
@@ -20,34 +22,35 @@ class Questions extends Component {
     this.finish = this.finish.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.questionsStore.startTimer()
   }
 
-  onCodeChange(newValue) {
+  onCodeChange (newValue) {
     this.props.questionsStore.updateCurrentQuestionCode(newValue)
   }
 
-  setResult(result) {
+  setResult (result) {
     this.props.questionsStore.setResult(result)
   }
 
-  handleCodeSubmit(e) {
+  handleCodeSubmit (e) {
     if (e.keyCode === 13 && e.altKey) {
       let { code } = this.props.questionsStore.currentQuestion
       code = code
         .trim()
         .split('\n')
         .filter(line => {
-          line = line.trim()
-          return !(line.startsWith('//') || line.startsWith('/*'))
+          const currentLine = line.trim()
+          return !(currentLine.startsWith('//') || currentLine.startsWith('/*'))
         })
         .join('')
 
-      let currentFunc = null
+      const currentFunc = null
       code = `currentFunc = ${code}`
       try {
         const submissions = []
+        /* eslint no-eval:0 */
         eval(code)
         const isValid = this.runTests(currentFunc, submissions)
         if (isValid) {
@@ -62,9 +65,10 @@ class Questions extends Component {
     }
   }
 
-  runTests(currentFunc, submissions) {
+  runTests (currentFunc, submissions) {
     return this.props.questionsStore.currentQuestion.tests.every(test => {
       submissions.push({
+        id: shortid.generate(),
         expected: test.result,
         result: currentFunc(test.param)
       })
@@ -72,33 +76,31 @@ class Questions extends Component {
     })
   }
 
-  renderFailTests(submissions) {
-    return (
-      <div>
-        <span>Tests are not passing. Check your code.</span>
-        {submissions.map((submission, idx) => (
-          <p key={`submission_${idx}`}>
-            <span>Expected: {submission.expected.toString()}</span>
-            <span> - </span>
-            <span>Got: {submission.result.toString()}</span>
-          </p>
-        ))} 
-      </div>
-    )
-  }
-
-  finish() {
+  finish () {
     this.props.history.push('finish');
   }
 
-  render() {
+  renderFailTests = (submissions) => (
+    <div>
+      <span>Tests are not passing. Check your code.</span>
+      {submissions.map((submission) => (
+        <p key={submission.id}>
+          <span>Expected: {submission.expected.toString()}</span>
+          <span> - </span>
+          <span>Got: {submission.result.toString()}</span>
+        </p>
+      ))}
+    </div>
+  )
+
+  render () {
     const { currentQuestion, result } = this.props.questionsStore
-    const codeTest = currentQuestion.code.replace('\t','');
+    const codeTest = currentQuestion.code.replace('\t', '');
     return (
       <div>
         { result !== 'finished' ?
           <div>
-            <Editor 
+            <Editor
               code={codeTest}
               onChange={this.onCodeChange}
             />
@@ -109,6 +111,7 @@ class Questions extends Component {
       </div>
     )
   }
+
 }
 
 export default Questions

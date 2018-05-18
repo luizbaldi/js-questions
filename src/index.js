@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import registerServiceWorker from './registerServiceWorker'
+import { useStrict } from 'mobx'
 import { injectGlobal } from 'styled-components'
 import bg from './img/stardust.png'
 import App from './screens/App.jsx'
-import { useStrict } from 'mobx'
+import registerServiceWorker from './registerServiceWorker'
 
 /* Global style */
 injectGlobal([`

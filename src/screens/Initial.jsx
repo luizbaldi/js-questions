@@ -2,41 +2,48 @@ import React, { PureComponent } from 'react'
 
 /* Libs */
 import styled from 'styled-components'
+import shortid from 'shortid'
 
 /* UI Components */
-import VerticalAlign from '../components/VerticalAlign'
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 import Divider from 'material-ui/Divider'
 import FlatButton from 'material-ui/FlatButton'
+import VerticalAlign from '../components/VerticalAlign'
 
 class Initial extends PureComponent {
+
   changePage (page) {
     this.props.history.push(`/${page}`)
   }
-  renderTips () {
+
+  renderTips = () => {
     const items = [
       {
+        id: shortid.generate(),
         primaryText: 'You can check internet for syntax doubts',
         secondaryText: 'It\'s normal to check JavaScript documentation'
       },
       {
+        id: shortid.generate(),
         primaryText: 'You can console.log for testing',
         secondaryText: 'console.log can be your friend to print some values'
       },
       {
+        id: shortid.generate(),
         primaryText: 'The timer is ticking',
         secondaryText: 'Don\'t worry about it, just saying to remember'
       },
       {
+        id: shortid.generate(),
         primaryText: 'Hit Alt+Enter to proceed a level or submit',
         secondaryText: 'This is very important tho'
       }
     ]
-    return items.map((item, idx) => (
+    return items.map((item) => (
       <StyledListItem
-        key={`tipItem_${idx}`}
+        key={item.id}
         primaryText={item.primaryText}
         secondaryText={item.secondaryText}
       />
@@ -48,7 +55,7 @@ class Initial extends PureComponent {
         <Card>
           <CardTitle
             title='JS Questions'
-            subtitle={`Welcome to an adapted version of "You Can' t Javascript Under Pressure" :)`}
+            subtitle='Welcome to an adapted version of "You Cannot Javascript Under Pressure" :)'
           />
           <CardText>
             <List>
@@ -69,6 +76,7 @@ class Initial extends PureComponent {
       </VerticalAlign>
     )
   }
+
 }
 
 const FooterMessage = styled.i`

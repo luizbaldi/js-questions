@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 /* Ace Dependencies */
 import AceEditor from 'react-ace'
+/* eslint import/no-extraneous-dependencies: 0 */
 import 'brace/mode/javascript'
 import 'brace/theme/twilight'
 
@@ -16,11 +17,12 @@ import Checkbox from 'material-ui/Checkbox';
 import Divider from 'material-ui/Divider';
 
 class Editor extends PureComponent {
+
   static propTypes = {
     code: PropTypes.string.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -38,18 +40,18 @@ class Editor extends PureComponent {
     this.toggleMenu = this.toggleMenu.bind(this)
   }
 
-  onCheckboxClick(name, checked) {
+  onCheckboxClick (name, checked) {
     const config = Object.assign({}, this.state.config)
     config[name] = checked
     this.setState({ config })
   }
 
-  toggleMenu() {
+  toggleMenu () {
     const isMenuOpen = !this.state.isMenuOpen
     this.setState({ isMenuOpen })
   }
 
-  renderCheckboxItems() {
+  renderCheckboxItems () {
     const options = [
       {
         label: 'Show line numbers',
@@ -68,7 +70,7 @@ class Editor extends PureComponent {
         name: 'highlightActiveLine'
       }
     ];
-    
+
     return (
       <OptionsContainer>
         {options.map(option => (
@@ -78,23 +80,31 @@ class Editor extends PureComponent {
             name={option.name}
             checked={this.state.config[option.name]}
             onCheck={e => this.onCheckboxClick(e.target.name, e.target.checked)}
-          />  
+          />
         ))}
       </OptionsContainer>
     )
   }
 
-  render() {
-    const { fontSize, showLineNumbers, tabSize, showPrintMargin, showGutter, highlightActiveLine } = this.state.config;
+  render () {
+    const {
+      fontSize,
+      showLineNumbers,
+      tabSize,
+      showPrintMargin,
+      showGutter,
+      highlightActiveLine
+    } = this.state.config;
+
     return (
       <div>
-        <ActionButton backgroundColor="#676767" onClick={this.toggleMenu}>
+        <ActionButton backgroundColor='#676767' onClick={this.toggleMenu}>
           <MoveVertIcon />
         </ActionButton>
         <StyledEditor
-          mode="javascript"
-          theme="twilight"
-          name="editor"
+          mode='javascript'
+          theme='twilight'
+          name='editor'
           fontSize={fontSize}
           value={this.props.code}
           onChange={this.props.onChange}
@@ -116,7 +126,8 @@ class Editor extends PureComponent {
       </div>
     )
   }
-} 
+
+}
 
 const StyledEditor = styled(AceEditor)`
   /* Had to set this !important because AceEditor has an default style */

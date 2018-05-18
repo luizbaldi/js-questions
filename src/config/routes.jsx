@@ -11,7 +11,7 @@ import QuestionsScreen from '../screens/Questions.jsx'
 import FinishScreen from '../screens/Finish.jsx'
 
 /* Stores */
-import questionsStore from '../config/questionsStore'
+import questionsStore from '../stores/questionsStore'
 
 const stores = { questionsStore }
 
