@@ -1,18 +1,17 @@
 import { observable, action } from 'mobx'
-import questions from '../util/questions'
+import shortid from 'shortid'
+import questions from '../util/questions/'
 
 class QuestionsStore {
 
   questions = questions
-  finalQuestions
+  finalQuestions = ''
 
   @observable currentQuestion = {}
   @observable result
   @observable timerData
 
   constructor () {
-    this.questions = questions
-    this.finalQuestions = ''
     this.currentQuestion = this.questions[0]
     this.result = this.currentQuestion.intro
     this.timerData = {
@@ -47,6 +46,17 @@ class QuestionsStore {
       this.result = 'finished'
       this.timerData.end = new Date();
     }
+  }
+
+  runTests (currentFunc, submissions) {
+    return this.currentQuestion.tests.every(test => {
+      submissions.push({
+        id: shortid.generate(),
+        expected: test.result,
+        result: currentFunc(test.param)
+      })
+      return currentFunc(test.param) === test.result
+    })
   }
 
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import shortid from 'shortid'
 
 /* UI Components */
 import Editor from '../components/Editor.jsx'
@@ -15,22 +14,17 @@ class Questions extends Component {
 
     /* Binds code submission listener */
     document.addEventListener('keydown', this.handleCodeSubmit.bind(this))
-
-    this.onCodeChange = this.onCodeChange.bind(this)
-    this.runTests = this.runTests.bind(this)
-    this.setResult = this.setResult.bind(this)
-    this.finish = this.finish.bind(this)
   }
 
   componentDidMount () {
     this.props.questionsStore.startTimer()
   }
 
-  onCodeChange (newValue) {
+  onCodeChange = (newValue) => {
     this.props.questionsStore.updateCurrentQuestionCode(newValue)
   }
 
-  setResult (result) {
+  setResult = (result) => {
     this.props.questionsStore.setResult(result)
   }
 
@@ -52,7 +46,7 @@ class Questions extends Component {
         const submissions = []
         /* eslint no-eval:0 */
         eval(code)
-        const isValid = this.runTests(currentFunc, submissions)
+        const isValid = this.props.questionsStore.runTests(currentFunc, submissions)
         if (isValid) {
           this.props.questionsStore.nextLevel(currentFunc)
         } else {
@@ -65,20 +59,7 @@ class Questions extends Component {
     }
   }
 
-  runTests (currentFunc, submissions) {
-    return this.props.questionsStore.currentQuestion.tests.every(test => {
-      submissions.push({
-        id: shortid.generate(),
-        expected: test.result,
-        result: currentFunc(test.param)
-      })
-      return currentFunc(test.param) === test.result
-    })
-  }
-
-  finish () {
-    this.props.history.push('finish');
-  }
+  finish = () => this.props.history.push('finish');
 
   renderFailTests = (submissions) => (
     <div>
