@@ -1,15 +1,17 @@
+// @flow
+
 import { observable, action } from 'mobx'
 import shortid from 'shortid'
 import questions from '../util/questions/'
 
 class QuestionsStore {
 
-  questions = questions
-  finalQuestions = ''
+  questions: mixed[] = questions
+  finalQuestions: string = ''
 
-  @observable currentQuestion = {}
-  @observable result
-  @observable timerData
+  @observable currentQuestion: { name: string, intro: string, code: string, tests: mixed[] } = {}
+  @observable result: string
+  @observable timerData: { start: any, end: any }
 
   constructor () {
     this.currentQuestion = this.questions[0]

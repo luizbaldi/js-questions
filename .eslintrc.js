@@ -8,8 +8,8 @@ module.exports = {
         jsx: true
       }
     },
-    plugins: ['react'],
-    extends: 'airbnb',
+    plugins: ['react', 'flowtype'],
+    extends: ['airbnb', 'plugin:flowtype/recommended'],
     rules: {
       'arrow-parens': 0,
       'comma-dangle': 'off',
@@ -39,4 +39,3 @@ module.exports = {
       'react/jsx-filename-extension': 0
     }
   }
-  
